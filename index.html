@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="سكون كافيه — المكان المناسب لجلستك الهادئة وقهوتك. مشروبات ساخنة وباردة، جلسات مريحة، وإنترنت سريع.">
+  <title>سكون كافيه | جلستك على مزاجك</title>
+  <style>
+    :root {
+      --bg: #11110f;
+      --panel: #1b1a17;
+      --panel2: #24221d;
+      --gold: #d6b36a;
+      --gold-light: #f0d99e;
+      --cream: #f6f0e5;
+      --muted: #b8b1a4;
+      --line: rgba(214,179,106,.22);
+      --radius: 22px;
+      --shadow: 0 18px 55px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0; background: var(--bg); color: var(--cream);
+      font-family: Tahoma, Arial, sans-serif; line-height: 1.8;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .topbar {
+      background: #0b0b0a; border-bottom: 1px solid var(--line);
+      color: var(--gold-light); font-size: .87rem; text-align: center; padding: 7px 12px;
+    }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(17,17,15,.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 78px; gap: 22px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: max-content; }
+    .brand-mark {
+      display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid var(--gold);
+      border-radius: 50%; color: var(--gold-light); font-size: 1.35rem;
+      box-shadow: inset 0 0 0 4px rgba(214,179,106,.08);
+    }
+    .brand-name { font-size: 1.2rem; font-weight: 800; letter-spacing: .03em; }
+    .brand-name small { display: block; font-size: .62rem; color: var(--gold); letter-spacing: .24em; direction: ltr; line-height: 1.2; }
+    .nav-links { display: flex; align-items: center; gap: 25px; color: #ded7ca; font-size: .93rem; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--gold-light); }
+    .nav-cta, .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 9px;
+      border: 1px solid var(--gold); border-radius: 999px; padding: 11px 20px;
+      color: #17140d; background: var(--gold); font-weight: 800; transition: .2s ease;
+      cursor: pointer; font: inherit; font-weight: 800;
+    }
+    .nav-cta:hover, .btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline { color: var(--gold-light); background: transparent; }
+    .btn-outline:hover { color: #17140d; background: var(--gold); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: var(--panel); color: var(--cream); border-radius: 12px; padding: 9px 12px; font-size: 1.25rem; }
+    .hero {
+      min-height: 650px; display: grid; align-items: center; position: relative; overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(12,12,11,.15), rgba(12,12,11,.88) 53%, #11110f 100%),
+        linear-gradient(0deg, #11110f 0%, transparent 28%),
+        url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=2000&q=85') center/cover;
+    }
+    .hero-content { padding-block: 85px 115px; max-width: 660px; }
+    .eyebrow { color: var(--gold-light); font-weight: 700; letter-spacing: .04em; display: flex; align-items: center; gap: 10px; }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--gold); }
+    h1 { font-size: clamp(2.6rem, 6vw, 5.2rem); line-height: 1.2; margin: 18px 0; letter-spacing: -.04em; }
+    h1 span, .gold { color: var(--gold-light); }
+    .hero p { color: #d0c9bc; max-width: 540px; font-size: 1.08rem; margin: 0 0 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-note { display: flex; align-items: center; gap: 10px; color: var(--muted); margin-top: 34px; font-size: .9rem; }
+    .hero-note strong { color: var(--gold-light); }
+    section { padding: 92px 0; }
+    .section-head { text-align: center; max-width: 680px; margin: 0 auto 42px; }
+    .section-head .eyebrow { justify-content: center; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.25; margin: 12px 0; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .features { padding-top: 0; margin-top: -48px; position: relative; z-index: 2; }
+    .feature-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .feature {
+      background: rgba(29,28,24,.96); border: 1px solid var(--line); border-radius: 18px;
+      padding: 23px 18px; text-align: center; box-shadow: var(--shadow);
+    }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 6px; }
+    .feature h3 { margin: 4px 0; font-size: 1.04rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: .87rem; }
+    .menu-section { background: #171613; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .menu-card { background: var(--panel); border: 1px solid rgba(255,255,255,.07); border-radius: var(--radius); overflow: hidden; transition: .25s ease; }
+    .menu-card:hover { transform: translateY(-5px); border-color: var(--line); }
+    .menu-card img { width: 100%; height: 220px; object-fit: cover; }
+    .menu-body { padding: 22px; }
+    .menu-body h3 { margin: 0 0 7px; font-size: 1.25rem; }
+    .menu-body p { color: var(--muted); font-size: .92rem; margin: 0 0 16px; }
+    .menu-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .price { color: var(--gold-light); font-weight: 800; font-size: .95rem; }
+    .tag { font-size: .78rem; color: var(--gold-light); border: 1px solid var(--line); padding: 3px 10px; border-radius: 999px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 54px; align-items: center; }
+    .about-image { position: relative; }
+    .about-image img { height: 480px; width: 100%; object-fit: cover; border-radius: 26px; border: 1px solid var(--line); }
+    .image-caption { position: absolute; bottom: 18px; right: 18px; left: 18px; padding: 15px 18px; background: rgba(15,15,13,.85); border: 1px solid var(--line); border-radius: 15px; }
+    .image-caption strong { color: var(--gold-light); display: block; }
+    .about-copy p { color: var(--muted); }
+    .check-list { list-style: none; padding: 0; margin: 24px 0 28px; display: grid; gap: 10px; }
+    .check-list li::before { content: "✓"; color: var(--gold-light); font-weight: 900; margin-left: 10px; }
+    .match-section {
+      background: linear-gradient(120deg, rgba(15,15,13,.94), rgba(20,19,15,.86)),
+      url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1800&q=80') center/cover;
+      border-block: 1px solid var(--line);
+    }
+    .match-box { text-align: center; max-width: 780px; margin: auto; }
+    .match-box .big-icon { font-size: 3.1rem; }
+    .match-box p { color: #d0c9bc; max-width: 620px; margin: 0 auto 25px; }
+    .match-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 25px 0 30px; }
+    .match-pills span { border: 1px solid var(--line); background: rgba(255,255,255,.04); padding: 8px 15px; border-radius: 999px; color: var(--gold-light); }
+    .gallery-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; grid-template-rows: 220px 220px; gap: 14px; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; border: 1px solid var(--line); }
+    .gallery-grid img:first-child { grid-row: span 2; }
+    .contact-section { background: #171613; }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 25px; }
+    .contact-card, .contact-form { background: var(--panel); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 28px; }
+    .contact-card h3, .contact-form h3 { margin-top: 0; font-size: 1.4rem; }
+    .contact-item { display: flex; gap: 14px; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .contact-item:last-of-type { border-bottom: 0; }
+    .contact-icon { flex: 0 0 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: rgba(214,179,106,.1); color: var(--gold-light); font-size: 1.2rem; }
+    .contact-item strong { display: block; }
+    .contact-item span, .contact-item a { color: var(--muted); font-size: .92rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label { display: block; font-size: .9rem; margin-bottom: 6px; color: #e9e0d0; }
+    input, select, textarea { width: 100%; border: 1px solid rgba(255,255,255,.12); background: #121210; color: var(--cream); border-radius: 12px; padding: 13px 14px; font: inherit; outline: none; }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    .field { margin-bottom: 15px; }
+    textarea { resize: vertical; min-height: 105px; }
+    .form-message { color: var(--gold-light); min-height: 28px; font-size: .9rem; }
+    .map-placeholder { margin-top: 20px; border: 1px dashed var(--line); border-radius: 15px; padding: 17px; color: var(--muted); font-size: .9rem; }
+    footer { padding: 30px 0; background: #0b0b0a; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-inner p { color: var(--muted); margin: 0; font-size: .88rem; }
+    .socials { display: flex; gap: 10px; }
+    .socials a { border: 1px solid var(--line); color: var(--gold-light); padding: 6px 12px; border-radius: 999px; font-size: .88rem; }
+    .back-top { position: fixed; bottom: 18px; left: 18px; z-index: 10; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--panel2); color: var(--gold-light); box-shadow: var(--shadow); }
+    :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+    @media (max-width: 900px) {
+      .nav-links { gap: 14px; }
+      .feature-grid { grid-template-columns: repeat(2,1fr); }
+      .menu-grid { grid-template-columns: repeat(2,1fr); }
+      .about-grid { gap: 30px; }
+      .gallery-grid { grid-template-rows: 180px 180px; }
+    }
+    @media (max-width: 700px) {
+      .container { width: min(100% - 28px, 560px); }
+      .nav { min-height: 70px; }
+      .menu-toggle { display: block; }
+      .nav-cta { display: none; }
+      .nav-links {
+        display: none; position: absolute; top: 70px; right: 0; left: 0; padding: 16px 22px 22px;
+        flex-direction: column; align-items: stretch; gap: 0; background: #11110f;
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+      .hero { min-height: 610px; background-position: 42% center; background-image:
+        linear-gradient(90deg, rgba(12,12,11,.45), rgba(12,12,11,.86)),
+        linear-gradient(0deg, #11110f 0%, transparent 32%),
+        url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=80'); }
+      .hero-content { padding-block: 75px 100px; }
+      .hero p { font-size: 1rem; }
+      section { padding: 68px 0; }
+      .features { margin-top: -35px; }
+      .feature { padding: 18px 12px; }
+      .menu-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .menu-card img { height: 220px; }
+      .about-image img { height: 340px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 150px; }
+      .gallery-grid img:first-child { grid-row: auto; grid-column: span 2; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .footer-inner { justify-content: center; text-align: center; }
+    }
+    @media (max-width: 380px) {
+      .brand-name { font-size: 1.05rem; }
+      .brand-mark { width: 42px; height: 42px; }
+      .hero-actions .btn { width: 100%; }
+      .feature-grid { gap: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">☕ سكون كافيه — خذ وقتك، واستمتع بلحظتك</div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="سكون كافيه - الرئيسية">
+        <span class="brand-mark">س</span>
+        <span class="brand-name">سكون كافيه<small>SOKOON CAFE</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="القائمة الرئيسية">
+        <a href="#home">الرئيسية</a>
+        <a href="#menu">قائمتنا</a>
+        <a href="#about">عن سكون</a>
+        <a href="#matches">المباريات</a>
+        <a href="#contact">تواصل معنا</a>
+      </nav>
+      <a class="nav-cta" href="#contact">زورونا اليوم <span>←</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">مساحتك للهدوء والمزاج</div>
+          <h1>في سكون…<br><span>كل لحظة إلها مزاج.</span></h1>
+          <p>قهوتك المفضلة، جلستك الهادئة، وأجواء بتجمع الأحباب. أهلاً بك في سكون كافيه، المكان المناسب لراحتك.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#menu">اكتشف قائمتنا <span>←</span></a>
+            <a class="btn btn-outline" href="https://wa.me/970592517895" target="_blank" rel="noopener noreferrer">تواصل عبر واتساب</a>
+          </div>
+          <div class="hero-note"><span>✦</span> جلسة مريحة <strong>•</strong> مشروبات متنوعة <strong>•</strong> أجواء مميزة</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" aria-label="مميزات سكون">
+      <div class="container feature-grid">
+        <article class="feature"><div class="feature-icon">☕</div><h3>قهوة على مزاجك</h3><p>مشروبات ساخنة بنكهات تحبها</p></article>
+        <article class="feature"><div class="feature-icon">🧊</div><h3>انتعاش بكل رشفة</h3><p>خيارات باردة ومنعشة</p></article>
+        <article class="feature"><div class="feature-icon">📶</div><h3>إنترنت سريع</h3><p>للدراسة والتصفح والعمل</p></article>
+        <article class="feature"><div class="feature-icon">⚽</div><h3>أجواء المباريات</h3><p>شجّع فريقك مع أصحابك</p></article>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">اختيارات من قائمتنا</div>
+          <h2>شو على <span class="gold">مزاجك اليوم؟</span></h2>
+          <p>مجموعة من الخيارات اللي بتكمّل جلستك. اسألنا عن الأصناف المتوفرة والأسعار في الكافيه.</p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80" alt="فنجان قهوة ساخنة" loading="lazy">
+            <div class="menu-body"><h3>مشروبات ساخنة</h3><p>قهوة، نسكافيه، شاي ومشروبات دافئة تناسب كل وقت.</p><div class="menu-bottom"><span class="tag">دفا ومزاج</span><span class="price">اسأل عن السعر</span></div></div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=900&q=80" alt="مشروب بارد منعش" loading="lazy">
+            <div class="menu-body"><h3>مشروبات باردة</h3><p>خيارات منعشة لجلستك، بنكهات متنوعة وتقديم مرتب.</p><div class="menu-bottom"><span class="tag">انتعاش</span><span class="price">اسأل عن السعر</span></div></div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80" alt="قهوة وأجواء مقهى" loading="lazy">
+            <div class="menu-body"><h3>جلسات الأصحاب</h3><p>مكان مريح للّمة الحلوة، الحديث، والاستمتاع بالوقت.</p><div class="menu-bottom"><span class="tag">لمة حلوة</span><span class="price">أهلاً بالجميع</span></div></div>
+          </article>
+        </div>
+        <p style="text-align:center;color:var(--muted);font-size:.85rem;margin:22px 0 0">* الصور للتوضيح، والأصناف والأسعار قابلة للتعديل حسب قائمة الكافيه الفعلية.</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1100&q=85" alt="تحضير القهوة داخل مقهى" loading="lazy">
+          <div class="image-caption"><strong>سكون — المكان المناسب لجلستك الهادئة</strong><span>بسكون، قهوتك بتكون أروع.</span></div>
+        </div>
+        <div class="about-copy">
+          <div class="eyebrow">حكاية سكون</div>
+          <h2>مكانك اللي بترجعله <span class="gold">بكل حب.</span></h2>
+          <p>في سكون كافيه، بنهتم بالتفاصيل اللي بتصنع فرق: أجواء مريحة، خيارات متنوعة، ومساحة مناسبة تقضي فيها وقتك بالطريقة اللي بتحبها.</p>
+          <ul class="check-list">
+            <li>جلسات مناسبة للأصحاب واللقاءات</li>
+            <li>مشروبات ساخنة وباردة</li>
+            <li>إنترنت سريع للدراسة والتصفح</li>
+            <li>متابعة أجواء المباريات مع الأصحاب</li>
+          </ul>
+          <a class="btn" href="#contact">تعالوا زورونا <span>←</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="match-section" id="matches">
+      <div class="container match-box">
+        <div class="big-icon">⚽</div>
+        <div class="eyebrow" style="justify-content:center">المباراة أحلى مع اللمة</div>
+        <h2>شجّع فريقك… <span class="gold">والقعدة علينا!</span></h2>
+        <p>اجمع أصحابك واستمتعوا بأجواء متابعة المباريات في سكون كافيه، مع مشروبك المفضل وجلسة مريحة.</p>
+        <div class="match-pills"><span>⚽ أجواء كروية</span><span>☕ مشروبات متنوعة</span><span>👥 جلسة مع الأصحاب</span></div>
+        <a class="btn" href="#contact">استفسر عن المباريات القادمة</a>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">تفاصيل بتفرق</div>
+          <h2>لحظات من <span class="gold">أجواء سكون</span></h2>
+          <p>القهوة، الهدوء، والوقت الحلو… كل تفصيل إله مكان.</p>
+        </div>
+        <div class="gallery-grid">
+          <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1000&q=80" alt="أجواء مقهى دافئة" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1493857671505-72967e2e2760?auto=format&fit=crop&w=800&q=80" alt="طاولة في مقهى" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="جلسات مقهى مريحة" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80" alt="قهوة محضرة بعناية" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="داخل مقهى عصري" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">نستناك في سكون</div>
+          <h2>خلّينا على <span class="gold">تواصل</span></h2>
+          <p>مرّ علينا أو ابعت استفسارك، وخلّي جلستك الجاية في سكون.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>معلومات الكافيه</h3>
+            <div class="contact-item"><div class="contact-icon">📍</div><div><strong>العنوان</strong><span>دير البلح — البركة — بجوار سوبر ماركت المليطي</span></div></div>
+            <div class="contact-item"><div class="contact-icon">🕒</div><div><strong>أوقات الدوام</strong><span>يرجى التواصل للتأكد من ساعات العمل</span></div></div>
+            <div class="contact-item"><div class="contact-icon">📱</div><div><strong>اتصال هاتفي</strong><a href="tel:0592517895" dir="ltr">0592517895</a></div></div>
+            <div class="contact-item"><div class="contact-icon">💬</div><div><strong>واتساب</strong><a href="https://wa.me/970592517895" target="_blank" rel="noopener noreferrer" dir="ltr">0592517895 — تواصل عبر واتساب</a></div></div>
+            <div class="map-placeholder">📌 أضف هنا رابط خرائط Google الدقيق للكافيه عند توفره.</div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <h3>أرسل استفسارك</h3>
+            <div class="form-row">
+              <div class="field"><label for="name">الاسم</label><input id="name" name="name" placeholder="اكتب اسمك" required></div>
+              <div class="field"><label for="phone">رقم التواصل (اختياري)</label><input id="phone" name="phone" type="tel" placeholder="رقم الهاتف"></div>
+            </div>
+            <div class="field"><label for="topic">موضوع الاستفسار</label>
+              <select id="topic" name="topic">
+                <option>قائمة المشروبات</option><option>متابعة المباريات</option><option>الإنترنت والدراسة</option><option>موقع الكافيه</option><option>استفسار آخر</option>
+              </select>
+            </div>
+            <div class="field"><label for="message">رسالتك</label><textarea id="message" name="message" placeholder="اكتب استفسارك هنا..." required></textarea></div>
+            <button class="btn" type="submit">تجهيز الرسالة <span>←</span></button>
+            <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+            <small style="color:var(--muted)">النموذج تجريبي ولا يرسل البيانات إلى الكافيه تلقائياً؛ اربطه بواتساب أو خدمة نماذج عند النشر.</small>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark">س</span><span class="brand-name">سكون كافيه<small>SOKOON CAFE</small></span></a>
+      <p>© <span id="year"></span> سكون كافيه. كل الحقوق محفوظة.</p>
+      <div class="socials"><a href="https://wa.me/970592517895" target="_blank" rel="noopener noreferrer">واتساب</a><a href="tel:0592517895">اتصال</a><a href="#home">الرئيسية ↑</a></div>
+    </div>
+  </footer>
+  <a class="back-top" href="#home" aria-label="العودة إلى الأعلى">↑</a>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'فتح القائمة');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const topic = document.getElementById('topic').value;
+      const message = document.getElementById('message').value.trim();
+      const result = document.getElementById('formMessage');
+
+      if (!name || !message) {
+        result.textContent = 'يرجى كتابة الاسم والرسالة أولاً.';
+        return;
+      }
+
+      const phone = document.getElementById('phone').value.trim();
+      const whatsappText = `مرحباً سكون كافيه، أنا ${name}.\\nموضوع الاستفسار: ${topic}\\nرقم التواصل: ${phone || 'غير مذكور'}\\nالرسالة: ${message}`;
+      result.textContent = 'سيتم فتح واتساب لتتمكن من مراجعة الرسالة وإرسالها.';
+      const whatsappUrl = 'https://wa.me/970592517895?text=' + encodeURIComponent(whatsappText);
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    });
+  </script>
+</body>
+</html>
